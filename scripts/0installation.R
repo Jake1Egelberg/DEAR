@@ -89,4 +89,5 @@ colnames(metadata)<-c("SourceDOI","Accession","SampleType","RefGenome","mutant")
 setwd(file.path)
 write.csv(metadata,"metadata.csv",row.names=FALSE)
 
-
+setwd(paste(file.path,"/progress",sep=""))
+write.table(update,"Installation Complete")
