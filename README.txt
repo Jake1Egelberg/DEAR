@@ -29,7 +29,7 @@ GENERAL STEPS OF RNA-SEQ:
 *Use "View" function to search by SRR from SRA
 
 3) Import FASTQ/BAM to 1fastqfiles folder in workflow path
-	Store old FASTQ files in "history" subfolder
+	See history folder for old FASTQ files
 	For paired data, ensure one set is added to pair folder in same order
 
 4) Identify reference genome and import .fa.gz file to 2genome folder
@@ -38,7 +38,7 @@ GENERAL STEPS OF RNA-SEQ:
 
 5) Record sample metadata and configure design matrix
 
-6) Configure parms according to sample metadata and design matrix.
+6) Configure parms per metadata and design matrix
 
 7) Run the following .bat files in order:
 	1) 1BUILD_INDEX.bat *SKIP THIS IF YOU ALREADY HAVE A BUILT INDEX*
@@ -56,7 +56,7 @@ GENERAL STEPS OF RNA-SEQ:
 
 ------------------------------------------------------------
 
-EXAMPLE FASTQ SEQUENCES TO START:
+EXAMPLE FASTQ SEQUENCE ACCESSION #S TO START:
 SRR1552444
 SRR1552445
 SRR1552446
@@ -76,8 +76,8 @@ Fu, N.Y., Rios, A., Pal, B., Soetanto, R., Lun, A.T.L., Liu, K., Beck, T., Best,
 
 ANNOTATED PARMS FILE
 
-#Specify reference genome file name (remove ending, .fa.gz implied), file to be indexed
-index.file<-"chr1_mm10"
+#Specify reference genome file name and INCLUDE FILE TYPE
+index.file<-"chr1_mm10.fa.gz"
 
 #Set true if data is paired-end
 paired.end.status<-FALSE
@@ -86,7 +86,7 @@ paired.end.status<-FALSE
   #Mouse (mm10) and human (hg19) genome assemblies
 ref.genome<-"mm10"
 
-#Specify whether to use existing raw feature counts or not
+#Specifies whether to use existing raw feature counts or not
 use.existing.counts: FALSE
 
 #Configure design matrix
