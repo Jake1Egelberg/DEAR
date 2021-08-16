@@ -105,4 +105,4 @@ sample.value<-2 #Across at least X samples
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-
+Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.1 (v2.0.1). Zenodo. https://doi.org/10.5281/zenodo.5207295
