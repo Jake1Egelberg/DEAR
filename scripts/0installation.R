@@ -1,27 +1,15 @@
-#Installing packages to R
+#Create text file to update user
+update<-data.frame(Update="Status")
+
+#Installing base packages to R
 base.packages<-c("BiocManager",
                  "stringr",
                  "RColorBrewer",
                  "gplots",
-                 "this.path",
-                 "Rtools")
+                 "this.path")
 for(i in 1:length(base.packages)){
   tryCatch(find.package(base.packages[i]),
            error=function(e) install.packages(base.packages[i],repos="http://lib.stat.cmu.edu/R/CRAN/"))
-}
-bioc.packages<-c("Rsubread", 
-                 "edgeR",
-                 "limma",
-                 "Glimma",
-                 "org.Mm.eg.db",
-                 "org.Hs.eg.db",
-                 "fgsea",
-                 "reactome.db")
-
-library("BiocManager")
-for(i in 1:length(bioc.packages)){
-  tryCatch(find.package(bioc.packages[i]),
-           error=function(e) BiocManager::install(bioc.packages[i]))
 }
 
 #Load packages
@@ -43,6 +31,24 @@ dir.create(paste(file.path,"/buildindex",sep=""))
 dir.create(paste(file.path,"/plots",sep=""))
   dir.create(paste(file.path,"/plots/Quality",sep=""))
 dir.create(paste(file.path,"/progress",sep=""))
+
+#Install BiocManager packages
+bioc.packages<-c("Rsubread", 
+                 "edgeR",
+                 "limma",
+                 "Glimma",
+                 "org.Mm.eg.db",
+                 "org.Hs.eg.db",
+                 "fgsea",
+                 "reactome.db")
+library("BiocManager")
+for(i in 1:length(bioc.packages)){
+  tryCatch(find.package(bioc.packages[i]),
+           error=function(e) {BiocManager::install(bioc.packages[i])
+             setwd(paste(file.path,"/progress",sep=""))
+             write.table(update,paste("Installing ",bioc.packages[i],sep=""))
+             })
+}
 
 #Get R file path
 R.path<-R.home(component="bin")
