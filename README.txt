@@ -1,3 +1,5 @@
+INSTALLATION INSTRUCTIONS:
+
 1) Download this RNAseqV2-main folder onto your hardrive (D:).
 
 *If you do not have a D: file path, edit the 0INSTALLATION.bat file above in a text editor to the file path availible.
@@ -6,7 +8,7 @@
 
 *Install R version 4.1.1 here: http://lib.stat.cmu.edu/R/CRAN/
 
-3) Run the 0INSTALLATION.bat file to install packages and create directories. This may take some time.
+3) Run the 0INSTALLATION.bat file to install packages and create directories. This may take some time. Monitor the "libraries" folder in R-4.1.1 to see addition of packages.
 
 ------------------------------------------------------------
 
@@ -27,7 +29,7 @@ GENERAL STEPS OF RNA-SEQ:
 *Use "View" function to search by SRR from SRA
 
 3) Import FASTQ/BAM to 1fastqfiles folder in workflow path
-	See history folder for old FASTQ files
+	Store old FASTQ files in "history" subfolder
 	For paired data, ensure one set is added to pair folder in same order
 
 4) Identify reference genome and import .fa.gz file to 2genome folder
@@ -36,7 +38,7 @@ GENERAL STEPS OF RNA-SEQ:
 
 5) Record sample metadata and configure design matrix
 
-6) Configure parms per metadata and design matrix
+6) Configure parms according to sample metadata and design matrix.
 
 7) Run the following .bat files in order:
 	1) 1BUILD_INDEX.bat *SKIP THIS IF YOU ALREADY HAVE A BUILT INDEX*
@@ -49,12 +51,12 @@ GENERAL STEPS OF RNA-SEQ:
 	b) Monitor the buildindex and 1fastqfiles folders to see addition of new files
 	c) Check task manager to ensure that resources are being directed towards RNA-seq program (shows up as Windows Command Processor)
 	d) Ensure that analysis is complete in "progress" folder before the command window closes automatically
-	e) If analysis stops on 3DE_ANALYSIS, re-configure threshold and sample values to include more genes
+	e) If analysis stops on 3DE_ANALYSIS, you may need to re-configure threshold and sample values to include more genes
 
 
 ------------------------------------------------------------
 
-EXAMPLE FASTQ SEQUENCE ACCESSION #S TO START:
+EXAMPLE FASTQ SEQUENCES TO START:
 SRR1552444
 SRR1552445
 SRR1552446
@@ -84,7 +86,7 @@ paired.end.status<-FALSE
   #Mouse (mm10) and human (hg19) genome assemblies
 ref.genome<-"mm10"
 
-#Specifies whether to use existing raw feature counts or not
+#Specify whether to use existing raw feature counts or not
 use.existing.counts: FALSE
 
 #Configure design matrix
@@ -103,4 +105,4 @@ sample.value<-2 #Across at least X samples
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-https://zenodo.org/badge/latestdoi/396408760
+
