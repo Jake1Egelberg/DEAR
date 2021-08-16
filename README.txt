@@ -1,8 +1,8 @@
-1) Download this RNAseqV2 folder onto your hardrive (D:). Rename the folder to include only "RNASeqV2"
+1) Download this RNAseqV2-main folder onto your hardrive (D:).
 
 *If you do not have a D: file path, edit the 0INSTALLATION.bat file above in a text editor to the file path availible.
 
-2) Install R version 4.1.1 into the subfolder "R-4.1.1". The resulting file path for R should read "D:/RNASeqV2/R-4.1.1/bin/x64/R.exe". Windows may ask to confirm that you would like to install to a folder that already exists. 
+2) Install R version 4.1.1 into the subfolder "R-4.1.1". The resulting file path for R should read "D:/RNASeqV2-main/R-4.1.1/bin/x64/R.exe". Windows may ask to confirm that you would like to install to a folder that already exists. 
 
 *Install R version 4.1.1 here: http://lib.stat.cmu.edu/R/CRAN/
 
