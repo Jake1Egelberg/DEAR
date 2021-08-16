@@ -1,6 +1,6 @@
 RNA_SEQ_PARAMETERS: STATUS
 
-index.file: mm9
+index.file: mm9.fa.gz
 
 paired.end.status: FALSE
 
