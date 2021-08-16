@@ -1,0 +1,15 @@
+RNA_SEQ_PARAMETERS: STATUS
+
+index.file: mm9
+
+paired.end.status: FALSE
+
+ref.genome: mm9
+
+use.existing.counts: FALSE
+
+interest.group: treatment
+
+thresh.value: 0.5
+
+sample.value: 2
