@@ -76,8 +76,8 @@ Fu, N.Y., Rios, A., Pal, B., Soetanto, R., Lun, A.T.L., Liu, K., Beck, T., Best,
 
 ANNOTATED PARMS FILE
 
-#Specify reference genome file name and INCLUDE FILE TYPE
-index.file<-"chr1_mm10.fa.gz"
+#Specify reference genome file name 
+index.file<-"chr1_mm10"
 
 #Set true if data is paired-end
 paired.end.status<-FALSE
