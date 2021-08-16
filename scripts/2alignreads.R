@@ -3,14 +3,14 @@
 #***********************************************************
 
 #---------------------LOADING PARMS----------------------
-library("this.path")
-library("stringr")
+library(this.path)
+library(stringr)
 #Choose primary workflow file path
 file.dir<-this.dir()
 file.path<-str_replace(file.dir,"scripts","")
 
 #Load user-set parms file
-parms<-read.delim(paste(file.path,"/parms.txt",sep=""),sep=":")
+parms<-read.delim(paste(file.path,"parms.txt",sep=""),sep=":")
 
 #Redefine parms for R
 index.file<-trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="index.file"),2])
@@ -27,35 +27,35 @@ set.seed(42)
 update<-data.frame(Update="Status")
 
 #Remove existing progress files
-progress.files<-list.files(path=paste(file.path,"/progress",sep=""),full.names = TRUE)
+progress.files<-list.files(path=paste(file.path,"progress",sep=""),full.names = TRUE)
 file.remove(progress.files)
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"ALIGNING READS.txt")
 
 #---------------------ALIGN READS----------------------
 
 #Identify fastq files in 1fastqfiles folder
-fastq.files <- list.files(path = paste(file.path,"/1fastqfiles/",sep=""), 
+fastq.files <- list.files(path = paste(file.path,"1fastqfiles/",sep=""), 
                           pattern = ".fastq.gz$", 
                           full.names = TRUE)
 
 if(paired.end.status==TRUE){
-  fastq.files.pair <- list.files(path = paste(file.path,"/1fastqfiles/pair",sep=""), 
+  fastq.files.pair <- list.files(path = paste(file.path,"1fastqfiles/pair",sep=""), 
                                  pattern = ".fastq.gz$", 
                                  full.names = TRUE)
 }
 
 #Align reads to index
 if(paired.end.status==FALSE){
-  align(index = paste(file.path,"/buildindex/",index.file,sep=""),
+  align(index = paste(file.path,"buildindex/",index.file,sep=""),
         readfile1 = fastq.files)
 } else if(paired.end.status==TRUE){
-  align(index = paste(file.path,"/buildindex/",index.file,sep=""),
+  align(index = paste(file.path,"buildindex/",index.file,sep=""),
         readfile1 = fastq.files,
         readfile2 = fastq.files.pair)
 }
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"ALIGNMENT COMPLETE.txt")
 

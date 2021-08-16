@@ -23,14 +23,14 @@ file.path<-this.dir()
 file.path<-str_replace(file.path,"scripts","")
 
 #Create directories
-dir.create(paste(file.path,"/1fastqfiles",sep=""))
-  dir.create(paste(file.path,"/1fastqfiles/pair",sep=""))
-  dir.create(paste(file.path,"/1fastqfiles/history",sep=""))
-dir.create(paste(file.path,"/2genome",sep=""))
-dir.create(paste(file.path,"/buildindex",sep=""))
-dir.create(paste(file.path,"/plots",sep=""))
-  dir.create(paste(file.path,"/plots/Quality",sep=""))
-dir.create(paste(file.path,"/progress",sep=""))
+dir.create(paste(file.path,"1fastqfiles",sep=""))
+  dir.create(paste(file.path,"1fastqfiles/pair",sep=""))
+  dir.create(paste(file.path,"1fastqfiles/history",sep=""))
+dir.create(paste(file.path,"2genome",sep=""))
+dir.create(paste(file.path,"buildindex",sep=""))
+dir.create(paste(file.path,"plots",sep=""))
+  dir.create(paste(file.path,"plots/Quality",sep=""))
+dir.create(paste(file.path,"progress",sep=""))
 
 #Install BiocManager packages
 bioc.packages<-c("Rsubread", 
@@ -45,7 +45,7 @@ library("BiocManager")
 for(i in 1:length(bioc.packages)){
   tryCatch(find.package(bioc.packages[i]),
            error=function(e) {BiocManager::install(bioc.packages[i])
-             setwd(paste(file.path,"/progress",sep=""))
+             setwd(paste(file.path,"progress",sep=""))
              write.table(update,paste("Installing ",bioc.packages[i],sep=""))
              })
 }
@@ -89,5 +89,5 @@ colnames(metadata)<-c("SourceDOI","Accession","SampleType","RefGenome","mutant")
 setwd(file.path)
 write.csv(metadata,"metadata.csv",row.names=FALSE)
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"Installation Complete")

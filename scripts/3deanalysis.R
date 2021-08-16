@@ -3,14 +3,14 @@
 #***********************************************************
 
 #---------------------LOADING PARMS----------------------
-library("this.path")
-library("stringr")
+library(this.path)
+library(stringr)
 #Choose primary workflow file path
 file.dir<-this.dir()
 file.path<-str_replace(file.dir,"scripts","")
 
 #Load user-set parms file
-parms<-read.delim(paste(file.path,"/parms.txt",sep=""),sep=":")
+parms<-read.delim(paste(file.path,"parms.txt",sep=""),sep=":")
 
 #Redefine parms for R
 paired.end.status<-as.logical(trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="paired.end.status"),2]))
@@ -21,7 +21,7 @@ thresh.value<-as.numeric(trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="thresh.va
 sample.value<-as.numeric(trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="sample.value"),2]))
 
 #Load design matrix
-design<-read.csv(paste(file.path,"/design.csv",sep=""))
+design<-read.csv(paste(file.path,"design.csv",sep=""))
 names(design)[1]<-gsub("ï..","",names(design)[1])
 
 #Load packages
@@ -41,16 +41,16 @@ set.seed(42)
 update<-data.frame(Update="Status")
 
 #Remove existing progress files
-progress.files<-list.files(path=paste(file.path,"/progress",sep=""),full.names = TRUE)
+progress.files<-list.files(path=paste(file.path,"progress",sep=""),full.names = TRUE)
 file.remove(progress.files)
 
 #---------------COUNTING FEATURES----------------------
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"COUNTING FEATURES.txt")
 
 #Get aligned .bam files in 1fastqfiles
-bam.files <- list.files(path = paste(file.path,"/1fastqfiles/",sep=""), 
+bam.files <- list.files(path = paste(file.path,"1fastqfiles/",sep=""), 
                         pattern = ".BAM$", 
                         full.names = TRUE)
 
@@ -65,7 +65,7 @@ if(use.existing.counts==FALSE){
   names(countdata)<-str_sub(names(countdata),1,10)
   
   
-  setwd(paste(file.path,"/1fastqfiles",sep=""))
+  setwd(paste(file.path,"1fastqfiles",sep=""))
   write.csv(countdata,"rawfeaturecounts.csv",row.names=TRUE)
 } else{
   countdata<-as.data.frame(read.csv(paste(file.path,"/1fastqfiles/rawfeaturecounts.csv",sep="")))
@@ -75,7 +75,7 @@ if(use.existing.counts==FALSE){
 
 #---------------REMOVE LOWLY EXPRESSED GENES----------------------
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"REMOVING POORLY EXPRESSED GENES.txt")
 
 #Calculate CPM (counts per million)
@@ -86,7 +86,7 @@ keep <- rowSums(thresh) >= sample.value
 counts.keep<-countdata[keep,]
 
 #Plot CPM v.s. Counts, check that count of 10 approximates thresh.value
-setwd(paste(file.path,"/plots/Quality",sep=""))
+setwd(paste(file.path,"plots/Quality",sep=""))
 png("CPM.png")
 plot(myCPM[,1],countdata[,1],ylim=c(0,50),xlim=c(0,10))
 abline(v=thresh.value)
@@ -94,7 +94,7 @@ dev.off()
 
 #---------------------QUALITY CHECK----------------------
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"QUALITY CHECKING COUNTS.txt")
 
 #Convert counts to DGEobject
@@ -108,7 +108,7 @@ interest.col$Col<-ifelse(interest.col$Group==interest.levels[1],"purple","orange
 color.select<-interest.col$Col
 
 #Plot library sizes to check consistency
-setwd(paste(file.path,"/plots/Quality",sep=""))
+setwd(paste(file.path,"plots/Quality",sep=""))
 png("LibraryBarPlot.png")
 barplot(dgeObj$samples$lib.size, 
         names=colnames(dgeObj),
@@ -119,7 +119,7 @@ dev.off()
 #Calculate log2 of counts
 logcounts <- cpm(dgeObj,log=TRUE)
 #Plot distribution to ensure normally distributed
-setwd(paste(file.path,"/plots/Quality",sep=""))
+setwd(paste(file.path,"plots/Quality",sep=""))
 png("Logcounts.png")
 boxplot(logcounts, 
         xlab="", 
@@ -130,7 +130,7 @@ title("Boxplots of logCPMs (unnormalised)")
 dev.off()
 
 #Plot MDS (multidimensional scaling plot)
-setwd(paste(file.path,"/plots/Quality",sep=""))
+setwd(paste(file.path,"plots/Quality",sep=""))
 png("MDSplot.png")
 plotMDS(dgeObj,col=color.select)
 title("Cell type")
@@ -146,7 +146,7 @@ highly_variable_lcpm<-logcounts[select_var,]
 #Plot heatmap
 mypalette <- brewer.pal(11,"RdYlBu")
 morecols <- colorRampPalette(mypalette)
-setwd(paste(file.path,"/plots/Quality",sep=""))
+setwd(paste(file.path,"plots/Quality",sep=""))
 png(file="High_var_genes.heatmap.png")
 heatmap.2(highly_variable_lcpm,
           col=rev(morecols(50)),
@@ -158,7 +158,7 @@ dev.off()
 
 #---------------------DE ANALYSIS----------------------
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"COMMENCING DE ANALYSIS.txt")
 
 #Normalize counts to correct for sampling bias (natural diff b/w samples)
@@ -209,7 +209,7 @@ output<-as.data.frame(topTags(lrt,n=Inf))
 
 #Create volcano plot
 #FDR<0.05 is used as significance threshold
-setwd(paste(file.path,"/plots/",sep=""))
+setwd(paste(file.path,"plots/",sep=""))
 png(file="volcanoplot.png")
 plot(x=output$logFC,
      y=-log10(output$FDR),
@@ -239,12 +239,12 @@ if(ref.genome=="mm10"||ref.genome=="mm9"){
 output.ann <- cbind(output, ann[,2:3])
 
 #Save output
-setwd(paste(file.path,"/plots/",sep=""))
+setwd(paste(file.path,"plots/",sep=""))
 write.csv(output.ann,"output.csv",row.names=FALSE)
 
 #---------------------GSEA ANALYSIS----------------------
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"COMMENCING GSEA ANALYSIS.txt")
 
 library(fgsea)
@@ -254,7 +254,7 @@ library(reactome.db)
 output.ord<-output.ann[order(output.ann$logFC),]
 
 #Save output
-setwd(paste(file.path,"/plots/",sep=""))
+setwd(paste(file.path,"plots/",sep=""))
 write.csv(output.ord,"outputordered.csv",row.names=FALSE)
 
 #Format for fgsea
@@ -271,7 +271,7 @@ fgseaRes <- fgsea(pathways,
                   maxSize = 500)
 
 #Save top enriched pathways
-setwd(paste(file.path,"/plots/",sep=""))
+setwd(paste(file.path,"plots/",sep=""))
 png("EnrichedPathways.png")
 topPathwaysUp <- fgseaRes[ES > 0][head(order(pval), n=15), pathway]
 topPathwaysDown <- fgseaRes[ES < 0][head(order(pval), n=15), pathway]
@@ -283,6 +283,6 @@ plotGseaTable(pathways[topPathways],
               colwidths = c(5, 3, 0.8, 1.2, 1.2))
 dev.off()
 
-setwd(paste(file.path,"/progress",sep=""))
+setwd(paste(file.path,"progress",sep=""))
 write.table(update,"ANALYSIS COMPLETE.txt")
 write.table(interest.col,"ColorSchemeReference.txt")
