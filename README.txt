@@ -8,7 +8,7 @@ INSTALLATION INSTRUCTIONS:
 
 *Install R version 4.1.1 here: http://lib.stat.cmu.edu/R/CRAN/
 
-3) Run the 0INSTALLATION.bat file to install packages and create directories. This may take some time. You can track the progress in the "progress" folder.
+3) Run the 0INSTALLATION.bat file to install packages and create directories. This may take some time. You can track the progress in the "progress" folder created soon after running.
 
 ------------------------------------------------------------
 
