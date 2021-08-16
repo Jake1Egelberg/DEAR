@@ -5,8 +5,7 @@ INSTALLATION INSTRUCTIONS:
 *If you do not have a D: file path, edit the 0INSTALLATION.bat file above in a text editor to the file path availible.
 
 2) Install R version 4.1.1 into the subfolder "R-4.1.1". The resulting file path for R should read "D:/RNASeqV2-main/R-4.1.1/bin/x64/R.exe". Windows may ask to confirm that you would like to install to a folder that already exists. 
-
-*Install R version 4.1.1 here: http://lib.stat.cmu.edu/R/CRAN/
+	Install R version 4.1.1 here: http://lib.stat.cmu.edu/R/CRAN/
 
 3) Run the 0INSTALLATION.bat file to install packages and create directories. This may take some time. You can track the progress in the "progress" folder created soon after running.
 
@@ -21,19 +20,23 @@ GENERAL STEPS OF RNA-SEQ:
 
 1) Identify sequences to analyze from NCBI SRA (Sequence Read Archive)
 	https://www.ncbi.nlm.nih.gov/sra/?term=hg19
+
 *Filter by  Access=Public, Source=RNA, Library Layout=<Your choice>, File Type= .fastq OR .bam
 **Order results by taxon to according to which organism you are investigating (human/hg19/hg38 or mouse/mm9/mm10)
 
 2) Download FASTQ/BAM from European Nucleotide Archive (downloading BAM speeds up analysis)
 	https://www.ebi.ac.uk/ena/browser/view
+
 *Use "View" function to search by SRR from SRA
 
 3) Import FASTQ/BAM to 1fastqfiles folder in workflow path
-	See history folder for old FASTQ files
-	For paired data, ensure one set is added to pair folder in same order
 
-4) Identify reference genome and import .fa.gz file to 2genome folder
+*See history folder for old FASTQ files
+**For paired data, ensure one set is added to pair folder in same order
+
+4) Identify reference genome and import .fa.gz file to 2genome folder. You may rename this file, but keep the .fa.gz file type.
 	https://hgdownload.soe.ucsc.edu/downloads.html
+
 *For taxon="Homo sapiens," use genome hg19. For taxon="Mus musculus," use genome mm10
 
 5) Record sample metadata and configure design matrix
@@ -44,6 +47,7 @@ GENERAL STEPS OF RNA-SEQ:
 	1) 1BUILD_INDEX.bat *SKIP THIS IF YOU ALREADY HAVE A BUILT INDEX*
 	2) 2ALIGN_READS.bat *SKIP THIS IF YOU DOWNLOADED BAM FILES*
 	3) 3DE_ANALYSIS.bat
+
 *THIS CAN TAKE A LONG TIME
 
 8) Monitor program progress as follows:
@@ -76,14 +80,14 @@ Fu, N.Y., Rios, A., Pal, B., Soetanto, R., Lun, A.T.L., Liu, K., Beck, T., Best,
 
 ANNOTATED PARMS FILE
 
-#Specify reference genome file name 
+#Specify reference genome file name. This is your .fa.gz file from UCSC.
 index.file<-"chr1_mm10"
 
-#Set true if data is paired-end
+#Set true if FASTQ sequences are paired-end
 paired.end.status<-FALSE
 
 #Specify reference genome of samples and index file
-  #Mouse (mm10) and human (hg19) genome assemblies
+  #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies
 ref.genome<-"mm10"
 
 #Specifies whether to use existing raw feature counts or not
@@ -105,4 +109,4 @@ sample.value<-2 #Across at least X samples
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.2 (v2.0.2). Zenodo. https://doi.org/10.5281/zenodo.5207295
+Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.4 (v2.0.4). Zenodo. https://doi.org/10.5281/zenodo.5207295
