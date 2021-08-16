@@ -46,7 +46,7 @@ for(i in 1:length(bioc.packages)){
   tryCatch(find.package(bioc.packages[i]),
            error=function(e) {BiocManager::install(bioc.packages[i])
              setwd(paste(file.path,"progress",sep=""))
-             write.table(update,paste("Installing ",bioc.packages[i],sep=""))
+             write.table(update,paste("Installing ",bioc.packages[i],"... .txt",sep=""))
              })
 }
 
@@ -90,4 +90,4 @@ setwd(file.path)
 write.csv(metadata,"metadata.csv",row.names=FALSE)
 
 setwd(paste(file.path,"progress",sep=""))
-write.table(update,"Installation Complete")
+write.table(update,"Installation Complete.txt")
