@@ -1,15 +1,15 @@
 RNA_SEQ_PARAMETERS: STATUS
 
-index.file: mm9.fa.gz
+index.file: mm10
 
 paired.end.status: FALSE
 
-ref.genome: mm9
+ref.genome: mm10
 
 use.existing.counts: FALSE
 
-interest.group: treatment
+interest.group: typeluminal
 
-thresh.value: 0.5
+thresh.value: 9
 
 sample.value: 2
