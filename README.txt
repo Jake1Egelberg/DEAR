@@ -1,10 +1,10 @@
 INSTALLATION INSTRUCTIONS:
 
-1) Download this DEAR-main folder onto your hardrive (C:).
+1) Select the green CODE button in the top right of your screen to download the DEAR-main folder. Extract this folder directly onto your hardrive (C:).
 
-*If you do not have a C: file path, edit the 0INSTALLATION.bat file above in a text editor to the file path availible.
+*If you are not downloading to a C: file path, edit the 0INSTALLATION.bat file above in a text editor to the file path you are downloading to.
 
-2) Install R version 4.1.1 into the subfolder "R-4.1.1". The resulting file path for R should read "D:/RNASeqV2-main/R-4.1.1/bin/x64/R.exe". Windows may ask to confirm that you would like to install to a folder that already exists. 
+2) Install R version 4.1.1 into the subfolder "R-4.1.1". The resulting file path for R should read "D:/DEAR-main/R-4.1.1/bin/x64/R.exe". R will attempt to create its own "R-4.1.1" subfolder within the one that already exists. Ensure that you edit the file path to prevent this. Windows may ask you to confirm that you would like to install to a folder that already exists. 
 	Install R version 4.1.1 here: http://lib.stat.cmu.edu/R/CRAN/
 
 3) Run the 0INSTALLATION.bat file to install packages and create directories. This may take some time. You can track the progress in the "progress" folder created soon after running.
@@ -19,17 +19,15 @@ GENERAL STEPS OF RNA-SEQ:
 ------------------------------------------------------------
 
 1) Identify sequences to analyze from NCBI SRA (Sequence Read Archive). Must be from human or mouse samples.
-	https://www.ncbi.nlm.nih.gov/sra/?term=hg19
+	https://www.ncbi.nlm.nih.gov/sra/
 
 *Filter by  Access=Public, Source=RNA, Library Layout=<Your choice>, File Type= .fastq OR .bam
-**Order results by taxon to according to which organism you are investigating (human/hg19/hg38 or mouse/mm9/mm10)
+**Order results by taxon to according to which organism you are investigating (Homo sapiens/hg19/hg38 or Mus musculus/mm9/mm10)
 
 2) Download FASTQ/BAM from European Nucleotide Archive (downloading BAM speeds up analysis)
 	https://www.ebi.ac.uk/ena/browser/view
 
-*Use "View" function to search by SRR from SRA
-
-3) Import FASTQ/BAM to 1fastqfiles folder in workflow path
+3) Extract downloaded FASTQ/BAM to the 1fastqfiles folder in DEAR
 
 *Store old FASTQ files in history folder
 **For paired data, ensure one set is added to pair folder in same order
@@ -37,7 +35,7 @@ GENERAL STEPS OF RNA-SEQ:
 4) Identify the reference genome for your chosen sequences and import its FASTA sequence into the 2genome folder. You can download .fa.gz files from UCSC. This is the index.file parm, and often the ref.genome parm as well.
 	https://hgdownload.soe.ucsc.edu/downloads.html
 
-*If the reference genomes are not from the hg19, hg38, mm9, or mm10 builds (e.g. E. coli), then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file. However, the differential expression analysis will not run to completion for alternative reference genomes.
+*If the reference genomes are not from the hg19, hg38, mm9, or mm10 builds (e.g. E. coli), then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file. However, differential expression analysis will not run to completion for alternative  genomes.
 	https://www.ncbi.nlm.nih.gov/assembly
 
 5) Record sample metadata and configure design matrix
@@ -121,4 +119,4 @@ Intercept	typeluminal
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jake Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.0.0 (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.5207295
+Jake Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.0.1 (v1.0.1). Zenodo. https://doi.org/10.5281/zenodo.5207295
