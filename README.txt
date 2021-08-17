@@ -122,4 +122,4 @@ Intercept	typeluminal
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.4 (v2.0.4). Zenodo. https://doi.org/10.5281/zenodo.5207295
+Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.5 (v2.0.5). Zenodo. https://doi.org/10.5281/zenodo.5207295
