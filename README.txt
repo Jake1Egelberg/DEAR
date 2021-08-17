@@ -18,7 +18,7 @@ GENERAL STEPS OF RNA-SEQ:
 
 ------------------------------------------------------------
 
-1) Identify sequences to analyze from NCBI SRA (Sequence Read Archive)
+1) Identify sequences to analyze from NCBI SRA (Sequence Read Archive). Must be from human, mouse, or E. coli K12 samples.
 	https://www.ncbi.nlm.nih.gov/sra/?term=hg19
 
 *Filter by  Access=Public, Source=RNA, Library Layout=<Your choice>, File Type= .fastq OR .bam
@@ -38,8 +38,9 @@ GENERAL STEPS OF RNA-SEQ:
 	https://hgdownload.soe.ucsc.edu/downloads.html
 	https://www.ncbi.nlm.nih.gov/assembly
 
-*If the reference genomes are not from the hg19, hg38, mm9, or mm10 builds, then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file.
+*If the reference genomes are not from the hg19, hg38, mm9, or mm10 builds (e.g. E. coli), then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file.
 	https://www.ncbi.nlm.nih.gov/assembly
+	https://www.ncbi.nlm.nih.gov/assembly/GCF_000005845.2
 
 5) Record sample metadata and configure design matrix
 
@@ -89,7 +90,7 @@ index.file: chr1_mm10
 paired.end.status: FALSE
 
 #The name of the genome that will be used to count RNA reads from your alignments, the .gtf file from NCBI. 
-  #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies are built-in
+  #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies are built-in. E. coli (ecoli) annotations (.gtf files) must de downloaded seperately.
 ref.genome: mm10
 
 #Set TRUE if using existing feature counts data (re-analyzing raw count data)
@@ -122,4 +123,4 @@ Intercept	typeluminal
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.5 (v2.0.5). Zenodo. https://doi.org/10.5281/zenodo.5207295
+Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.4 (v2.0.4). Zenodo. https://doi.org/10.5281/zenodo.5207295
