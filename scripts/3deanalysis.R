@@ -56,14 +56,24 @@ bam.files <- list.files(path = paste(file.path,"1fastqfiles/",sep=""),
 
 if(use.existing.counts==FALSE){
   
-  #Count features (count RNA reads in .bam files)
-  fc <- featureCounts(files=bam.files, 
-                      annot.inbuilt=ref.genome,
-                      isPairedEnd=paired.end.status)
+  if(ref.genome=="mm9"||ref.genome=="mm10"||ref.genome=="hg19"||ref.genome=="hg38"){
+    #Count features (count RNA reads in .bam files)
+    fc <- featureCounts(files=bam.files, 
+                        annot.inbuilt=ref.genome,
+                        isPairedEnd=paired.end.status)
+  } else{
+    annot.file<-list.files(path=paste(file.path,"3annotations/",sep=""),
+                           pattern=paste("^",ref.genome,sep=""),
+                           full.names = TRUE)
     
+    fc <- featureCounts(files=bam.files, 
+                        annot.ext=annot.file,
+                        isPairedEnd=paired.end.status,
+                        isGTFAnnotationFile=TRUE)
+  }
+  
   countdata<-as.data.frame(fc$counts)
   names(countdata)<-str_sub(names(countdata),1,10)
-  
   
   setwd(paste(file.path,"1fastqfiles",sep=""))
   write.csv(countdata,"rawfeaturecounts.csv",row.names=TRUE)

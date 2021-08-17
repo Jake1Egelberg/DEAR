@@ -33,10 +33,14 @@ write.table(update,"INDEXING GENOME.txt")
 
 #---------------------BUILD INDEX----------------------
 
+#Get reference genome (index.file from parms)
+genome.for.index<-list.files(path=paste(file.path,"2genome/",sep=""),
+                       pattern=paste("^",index.file,sep=""),full.names = TRUE)
+
 index.filepath<-paste(file.path,"buildindex",sep="")
 setwd(index.filepath)
 buildindex(basename=index.file,
-           reference=paste(file.path,"2genome/",index.file,".fa.gz",sep=""),
+           reference=genome.for.index,
            gappedIndex=TRUE,
            indexSplit=TRUE)
 
