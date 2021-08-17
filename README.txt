@@ -104,6 +104,8 @@ thresh.value: 6
 #The minimum number of samples across which the thresh.value must be met for a gene to be included in analysis.
 sample.value: 2 
 
+*The index.file and ref.genome inputs can be different because the index for alignment doesn't need to encompass an entire genome. In this case, the index will only be built for chromosome 1 of the mm10 mouse genome (index.file) and sequences will only be aligned to chromosome 1. Then, these alignments will be compared to all known genes in the mm10 genome to count RNA reads (ref.genome). However, index.file and ref.genome will often be the same.
+
 ------------------------------------------------------------
 
 ANNOTATED DESIGN MATRIX
