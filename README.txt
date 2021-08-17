@@ -1,6 +1,6 @@
 INSTALLATION INSTRUCTIONS:
 
-1) Download this RNAseqV2-main folder onto your hardrive (C:).
+1) Download this DEAR-main folder onto your hardrive (C:).
 
 *If you do not have a C: file path, edit the 0INSTALLATION.bat file above in a text editor to the file path availible.
 
@@ -121,4 +121,4 @@ Intercept	typeluminal
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jake Egelberg. (2021). Jake1Egelberg/RNASeqV2: RNA-seq Workflow v2.0.7 (v2.0.7). Zenodo. https://doi.org/10.5281/zenodo.5207295
+Jake Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.0.0 (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.5207295
