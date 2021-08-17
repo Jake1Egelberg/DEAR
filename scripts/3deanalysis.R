@@ -215,6 +215,14 @@ lrt <- glmLRT(fit, coef=design.col.num)
 #Get output
 output<-as.data.frame(topTags(lrt,n=Inf))
 
+#Reformat output
+output$GeneID<-rownames(output)
+output<-output[,c(6,1,2,3,4,5)]
+
+#Save non-annotated version
+setwd(paste(file.path,"plots/",sep=""))
+write.csv(output,"not_annotated_output.csv",row.names=FALSE)
+
 #Create volcano plot
 #FDR<0.05 is used as significance threshold
 setwd(paste(file.path,"plots/",sep=""))
@@ -229,14 +237,6 @@ points(x=output$logFC,
        col=ifelse(output$FDR<0.05,"red","black"))
 abline(h=-log10(0.05))
 dev.off()
-
-#Reformat output
-output$GeneID<-rownames(output)
-output<-output[,c(6,1,2,3,4,5)]
-
-#Save non-annotated version
-setwd(paste(file.path,"plots/",sep=""))
-write.csv(output,"not_annotated_output.csv",row.names=FALSE)
 
 #Annotate output
 if(ref.genome=="mm10"||ref.genome=="mm9"){
@@ -253,9 +253,12 @@ if(ref.genome=="mm10"||ref.genome=="mm9"){
 
 output.ann <- cbind(output, ann[,2:3])
 
+#Rank genes by order of sig
+output.ord<-output.ann[order(output.ann$logFC),]
+
 #Save output
 setwd(paste(file.path,"plots/",sep=""))
-write.csv(output.ann,"output.csv",row.names=FALSE)
+write.csv(output.ord,"output.csv",row.names=FALSE)
 
 #---------------------GSEA ANALYSIS----------------------
 
@@ -265,14 +268,7 @@ write.table(update,"COMMENCING GSEA ANALYSIS.txt")
 library(fgsea)
 library(reactome.db)
 
-#Rank genes by order of sig
-output.ord<-output.ann[order(output.ann$logFC),]
-
-#Save output
-setwd(paste(file.path,"plots/",sep=""))
-write.csv(output.ord,"outputordered.csv",row.names=FALSE)
-
-#Format for fgsea
+#Format ranked output for fgsea
 ranks<-output.ord$logFC
 names(ranks) <- output.ord$GeneID
 
