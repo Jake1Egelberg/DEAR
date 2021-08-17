@@ -1,6 +1,6 @@
 RNA_SEQ_PARAMETERS: STATUS
 
-index.file: mm10
+index.file: chr1_mm10
 
 paired.end.status: FALSE
 
