@@ -249,11 +249,6 @@ if(ref.genome=="mm10"||ref.genome=="mm9"){
   ann <- select(org.Hs.eg.db,
                 keys=output$GeneID,
                 columns=c("ENTREZID","SYMBOL","GENENAME"))
-} else if(ref.genome=="ecoli"){
-  library(org.EcK12.eg.db)
-  ann <- select(org.EcK12.eg.db,
-                keys=output$GeneID,
-                columns=c("ENTREZID","SYMBOL","GENENAME"))
 }
 
 output.ann <- cbind(output, ann[,2:3])
