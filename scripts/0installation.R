@@ -40,6 +40,7 @@ bioc.packages<-c("Rsubread",
                  "Glimma",
                  "org.Mm.eg.db",
                  "org.Hs.eg.db",
+                 "org.EcK12.eg.db",
                  "fgsea",
                  "reactome.db")
 library("BiocManager")

@@ -32,8 +32,6 @@ library(edgeR)
 library(limma)
 library(Glimma)
 library(gplots)
-library(org.Mm.eg.db)
-library(org.Hs.eg.db)
 library(RColorBrewer)
 set.seed(42)
 
@@ -237,11 +235,18 @@ output$GeneID<-rownames(output)
 output<-output[,c(6,1,2,3,4,5)]
 
 if(ref.genome=="mm10"||ref.genome=="mm9"){
+  library(org.Mm.eg.db)
   ann <- select(org.Mm.eg.db,
                 keys=output$GeneID,
                 columns=c("ENTREZID","SYMBOL","GENENAME"))
 } else if(ref.genome=="hg19"||ref.genome=="hg38"){
+  library(org.Hs.eg.db)
   ann <- select(org.Hs.eg.db,
+                keys=output$GeneID,
+                columns=c("ENTREZID","SYMBOL","GENENAME"))
+} else if(ref.genome=="ecoli"){
+  library(org.EcK12.eg.db)
+  ann <- select(org.EcK12.eg.db,
                 keys=output$GeneID,
                 columns=c("ENTREZID","SYMBOL","GENENAME"))
 }
