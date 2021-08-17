@@ -31,13 +31,17 @@ GENERAL STEPS OF RNA-SEQ:
 
 3) Import FASTQ/BAM to 1fastqfiles folder in workflow path
 
-*See history folder for old FASTQ files
+*Store old FASTQ files in history folder
 **For paired data, ensure one set is added to pair folder in same order
 
-4) Identify reference genome and import .fa.gz file to 2genome folder. You may rename this file, but keep the .fa.gz file type.
+4) Identify reference genome (ref.genome) and import its FASTA sequence into the 2genome folder. You can download .fa.gz files from UCSC or .fna files from NCBI.
 	https://hgdownload.soe.ucsc.edu/downloads.html
+	https://www.ncbi.nlm.nih.gov/assembly
 
-*For taxon="Homo sapiens," use genome hg19. For taxon="Mus musculus," use genome mm10
+*If the genomes are not from the hg19, hg38, mm9, or mm10 builds, then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file.
+	https://www.ncbi.nlm.nih.gov/assembly
+
+*For taxon="Homo sapiens," use genome hg19 or hg38. For taxon="Mus musculus," use genome mm9 or mm10
 
 5) Record sample metadata and configure design matrix
 
@@ -80,31 +84,40 @@ Fu, N.Y., Rios, A., Pal, B., Soetanto, R., Lun, A.T.L., Liu, K., Beck, T., Best,
 
 ANNOTATED PARMS FILE
 
-#Specify reference genome file name. This is your .fa.gz file from UCSC.
-index.file<-"chr1_mm10"
+#The raw (un-indexed) sequence of your chosen genome, the .fa.gz file from UCSC or .fta file from NCBI.
+index.file: chr1_mm10
 
-#Set true if FASTQ sequences are paired-end
-paired.end.status<-FALSE
+#Set TRUE if FASTQ sequences are paired-end
+paired.end.status: FALSE
 
-#Specify reference genome of samples and index file
+#The name of the genome that will be used to annotate your alignments, the .gtf file from NCBI. 
   #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies
-ref.genome<-"mm10"
+ref.genome: mm10
 
-#Specifies whether to use existing raw feature counts or not
+#Set TRUE if using existing feature counts data (re-analyzing raw count data)
 use.existing.counts: FALSE
 
-#Configure design matrix
-  #Groups as column names (factor)
-  #Rows are samples (row number should correspond to order of FASTQ)
-  #Fill columns with 1 or 0 to indicate status (level)
+#This specifies the groups to compare. This must be the same as the name of the 2nd column in your design matrix.
+interest.group: typeluminal
 
-#Specify group to compare (should be column name in design matrix)
-  #Can only compare 2 levels within 1 factor
-interest.group<-"typeluminal"
+#The minimum number of raw counts per million a gene must be associated with for it to be included in analysis.
+thresh.value: 6
 
-#Specify threshold and sample values for removing lowly expressed genes
-thresh.value<-6 #CPM<X selected
-sample.value<-2 #Across at least X samples
+#The minimum number of samples across which the thresh.value must be met for a gene to be included in analysis.
+sample.value: 2 
+
+------------------------------------------------------------
+
+ANNOTATED DESIGN MATRIX
+
+#The matrix tells R which groups to compare and can be interpreted in conjunction with known metadata. Each row corresponds to a sample. In this case, samples 1 and 2 are basal cells, while samples 3 and 4 are luminal cells. This matrix would compare gene expression between basal and luminal cells.
+
+Intercept	typeluminal
+1		0
+1		0
+1		1
+1		1
+
 
 ------------------------------------------------------------
 
