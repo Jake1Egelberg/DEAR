@@ -14,7 +14,7 @@ INSTALLATION INSTRUCTIONS:
 GENERAL STEPS OF RNA-SEQ:
 1) Build index of reference genome (human/hg19/hg38 or mouse/mm9/mm10)
 2) Align RNA reads to index
-3) Measure differential expression between high quality reads
+3) Count reads at each location and measure differential expression between high quality reads
 
 ------------------------------------------------------------
 
@@ -34,18 +34,16 @@ GENERAL STEPS OF RNA-SEQ:
 *Store old FASTQ files in history folder
 **For paired data, ensure one set is added to pair folder in same order
 
-4) Identify reference genome (ref.genome) and import its FASTA sequence into the 2genome folder. You can download .fa.gz files from UCSC or .fna files from NCBI.
+4) Identify the reference genome for your chosen sequences and import its FASTA sequence into the 2genome folder. You can download .fa.gz files from UCSC or .fna files from NCBI. This is the index.file parm, and often the ref.genome parm as well.
 	https://hgdownload.soe.ucsc.edu/downloads.html
 	https://www.ncbi.nlm.nih.gov/assembly
 
-*If the genomes are not from the hg19, hg38, mm9, or mm10 builds, then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file.
+*If the reference genomes are not from the hg19, hg38, mm9, or mm10 builds, then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file.
 	https://www.ncbi.nlm.nih.gov/assembly
-
-*For taxon="Homo sapiens," use genome hg19 or hg38. For taxon="Mus musculus," use genome mm9 or mm10
 
 5) Record sample metadata and configure design matrix
 
-6) Configure parms per metadata and design matrix
+6) Configure parms
 
 7) Run the following .bat files in order:
 	1) 1BUILD_INDEX.bat *SKIP THIS IF YOU ALREADY HAVE A BUILT INDEX*
@@ -84,14 +82,14 @@ Fu, N.Y., Rios, A., Pal, B., Soetanto, R., Lun, A.T.L., Liu, K., Beck, T., Best,
 
 ANNOTATED PARMS FILE
 
-#The raw (un-indexed) sequence of your chosen genome, the .fa.gz file from UCSC or .fta file from NCBI.
+#The raw (un-indexed) sequence of your chosen genome, the .fa.gz file from UCSC or .fta file from NCBI. Used to build the index for alignment.
 index.file: chr1_mm10
 
 #Set TRUE if FASTQ sequences are paired-end
 paired.end.status: FALSE
 
-#The name of the genome that will be used to annotate your alignments, the .gtf file from NCBI. 
-  #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies
+#The name of the genome that will be used to count RNA reads from your alignments, the .gtf file from NCBI. 
+  #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies are built-in
 ref.genome: mm10
 
 #Set TRUE if using existing feature counts data (re-analyzing raw count data)
