@@ -230,10 +230,15 @@ points(x=output$logFC,
 abline(h=-log10(0.05))
 dev.off()
 
-#Annotate output
+#Reformat output
 output$GeneID<-rownames(output)
 output<-output[,c(6,1,2,3,4,5)]
 
+#Save non-annotated version
+setwd(paste(file.path,"plots/",sep=""))
+write.csv(output,"not_annotated_output.csv",row.names=FALSE)
+
+#Annotate output
 if(ref.genome=="mm10"||ref.genome=="mm9"){
   library(org.Mm.eg.db)
   ann <- select(org.Mm.eg.db,
