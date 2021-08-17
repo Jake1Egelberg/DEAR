@@ -46,9 +46,10 @@ bioc.packages<-c("Rsubread",
 library("BiocManager")
 for(i in 1:length(bioc.packages)){
   tryCatch(find.package(bioc.packages[i]),
-           error=function(e) {BiocManager::install(bioc.packages[i])
+           error=function(e) {
              setwd(paste(file.path,"progress",sep=""))
              write.table(update,paste("Installing ",bioc.packages[i],"... .txt",sep=""))
+             BiocManager::install(bioc.packages[i])
              })
 }
 
