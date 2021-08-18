@@ -1,5 +1,7 @@
 INSTALLATION INSTRUCTIONS:
 
+SEE VIDEO: https://youtu.be/L05PSafdiOk
+
 1) Select the green CODE button in the top right of your screen to download the DEAR-main folder. Extract this folder directly onto your hardrive (C:).
 
 *If you are not downloading to a C: file path, edit the 0INSTALLATION.bat file above in a text editor to the file path you are downloading to.
