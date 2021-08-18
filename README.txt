@@ -57,8 +57,6 @@ USING DEAR:
 
 6) Configure parms
 
-RUN THE PROGRAM (see video ):
-
 7) Run the following .bat files in order:
 	1) 1BUILD_INDEX.bat *SKIP THIS IF YOU ALREADY HAVE A BUILT INDEX*
 	2) 2ALIGN_READS.bat *SKIP THIS IF YOU DOWNLOADED BAM FILES*
