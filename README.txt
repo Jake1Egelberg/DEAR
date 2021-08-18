@@ -1,6 +1,4 @@
-INSTALLATION INSTRUCTIONS:
-
-SEE VIDEO: https://youtu.be/L05PSafdiOk
+INSTALLATION INSTRUCTIONS (see video https://youtu.be/L05PSafdiOk):
 
 1) Select the green CODE button in the top right of your screen to download the DEAR-main folder. Extract this folder directly onto your hardrive (C:).
 
@@ -14,11 +12,14 @@ SEE VIDEO: https://youtu.be/L05PSafdiOk
 ------------------------------------------------------------
 
 GENERAL STEPS OF RNA-SEQ:
+
 1) Build index of reference genome (human/hg19/hg38 or mouse/mm9/mm10)
 2) Align RNA reads to index
 3) Count reads at each location and measure differential expression between high quality reads
 
 ------------------------------------------------------------
+
+DOWNLOAD FASTQ FILES (see video https://youtu.be/wlld8AkRMT8):
 
 1) Identify sequences to analyze from NCBI SRA (Sequence Read Archive). Must be from human or mouse samples.
 	https://www.ncbi.nlm.nih.gov/sra/
