@@ -151,6 +151,10 @@ select_var <- names(sort(var_genes, decreasing=TRUE))[1:100]
 #Get logcounts for most variable genes
 highly_variable_lcpm<-logcounts[select_var,]
 
+#Save most variable genes
+setwd(paste(file.path,"plots/Quality",sep=""))
+write.csv(highly_variable_lcpm,"highly_variable_genes.csv",row.names = TRUE)
+
 #Plot heatmap
 mypalette <- brewer.pal(11,"RdYlBu")
 morecols <- colorRampPalette(mypalette)
@@ -291,8 +295,13 @@ plotGseaTable(pathways[topPathways],
               ranks, 
               fgseaRes, 
               gseaParam = 0.5,
-              colwidths = c(5, 3, 0.8, 1.2, 1.2))
+              colwidths = c(6.2, 3, 0.8, 0, 1.2))
 dev.off()
+
+#Save top pathways with corresponding genes
+mylist<-pathways[topPathways]
+setwd(paste(file.path,"plots/",sep=""))
+capture.output(mylist,file="enrichedpathwaygenes.txt")
 
 setwd(paste(file.path,"progress",sep=""))
 write.table(update,"ANALYSIS COMPLETE.txt")
