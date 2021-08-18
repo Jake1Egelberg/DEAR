@@ -1,4 +1,16 @@
-INSTALLATION INSTRUCTIONS (see video https://youtu.be/L05PSafdiOk):
+INSTRUCTIONAL VIDEOS (about 5 minutes each):
+
+(1) Installing DEAR: https://youtu.be/L05PSafdiOk
+
+(2) Downloading FASTQ Files: https://youtu.be/wlld8AkRMT8
+
+(3) Setting Parameters: https://youtu.be/DRsgwIjwC_g
+
+(4) Differential Expression Analysis in R: https://youtu.be/5zIpqULUig4
+
+------------------------------------------------------------
+
+INSTALLATION INSTRUCTIONS:
 
 1) Select the green CODE button in the top right of your screen to download the DEAR-main folder. Extract this folder directly onto your hardrive (C:).
 
@@ -11,15 +23,15 @@ INSTALLATION INSTRUCTIONS (see video https://youtu.be/L05PSafdiOk):
 
 ------------------------------------------------------------
 
-GENERAL STEPS OF RNA-SEQ:
+GENERAL STEPS OF DEA:
 
-1) Build index of reference genome (human/hg19/hg38 or mouse/mm9/mm10)
+1) Build index of genome of interest
 2) Align RNA reads to index
 3) Count reads at each location and measure differential expression between high quality reads
 
 ------------------------------------------------------------
 
-DOWNLOAD FASTQ FILES (see video https://youtu.be/wlld8AkRMT8):
+USING DEAR:
 
 1) Identify sequences to analyze from NCBI SRA (Sequence Read Archive). Must be from human or mouse samples.
 	https://www.ncbi.nlm.nih.gov/sra/
@@ -44,6 +56,8 @@ DOWNLOAD FASTQ FILES (see video https://youtu.be/wlld8AkRMT8):
 5) Record sample metadata and configure design matrix
 
 6) Configure parms
+
+RUN THE PROGRAM (see video ):
 
 7) Run the following .bat files in order:
 	1) 1BUILD_INDEX.bat *SKIP THIS IF YOU ALREADY HAVE A BUILT INDEX*
