@@ -19,6 +19,8 @@ use.existing.counts<-as.logical(trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="us
 interest.group<-trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="interest.group"),2])
 thresh.value<-as.numeric(trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="thresh.value"),2]))
 sample.value<-as.numeric(trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="sample.value"),2]))
+feature.type<-trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="feature.type"),2])
+attribute.type<-trimws(parms[which(parms$RNA_SEQ_PARAMETERS=="attribute.type"),2])
 
 #Load design matrix
 design<-read.csv(paste(file.path,"design.csv",sep=""))
@@ -67,7 +69,9 @@ if(use.existing.counts==FALSE){
     fc <- featureCounts(files=bam.files, 
                         annot.ext=annot.file,
                         isPairedEnd=paired.end.status,
-                        isGTFAnnotationFile=TRUE)
+                        isGTFAnnotationFile=TRUE,
+                        GTF.featureType = feature.type,
+                        GTF.attrType= attribute.type)
   }
   
   countdata<-as.data.frame(fc$counts)
