@@ -136,4 +136,4 @@ Intercept	typeluminal
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jacob Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.0.8 (v1.0.8). Zenodo. https://doi.org/10.5281/zenodo.5207146
+Jacob Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.0.9 (v1.0.9). Zenodo. https://doi.org/10.5281/zenodo.5207146
