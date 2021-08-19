@@ -2,17 +2,17 @@ RNA_SEQ_PARAMETERS: STATUS
 
 paired.end.status: FALSE
 
-ref.genome: mm10
-
 index.file: chr1_mm10
 
 use.existing.counts: FALSE
 
+ref.genome: mm10
+
+interest.group: typeluminal
+
 feature.type: gene
 
 attribute.type: gene_id
-
-interest.group: typeluminal
 
 thresh.value: 0.5
 
