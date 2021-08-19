@@ -156,6 +156,7 @@ dev.off()
 var_genes <- apply(logcounts, 1, var)
 #Get top 100 most variable genes
 select_var <- names(sort(var_genes, decreasing=TRUE))[1:100]
+select_var<-select_var[!is.na(select_var)]
 #Get logcounts for most variable genes
 highly_variable_lcpm<-logcounts[select_var,]
 
@@ -171,7 +172,7 @@ png(file="High_var_genes.heatmap.png")
 heatmap.2(highly_variable_lcpm,
           col=rev(morecols(50)),
           trace="none", 
-          main="Top 100 most variable genes\nacross samples",
+          main="Top 100 most variable genes\nacross samples (if n>=100)",
           ColSideColors=color.select,
           scale="row")
 dev.off()
