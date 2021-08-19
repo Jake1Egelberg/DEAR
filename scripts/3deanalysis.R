@@ -96,8 +96,12 @@ counts.keep<-countdata[keep,]
 #Plot CPM v.s. Counts, check that count of 10 approximates thresh.value
 setwd(paste(file.path,"plots/Quality",sep=""))
 png("CPM.png")
-plot(myCPM[,1],countdata[,1],ylim=c(0,50),xlim=c(0,10))
+plot(myCPM[,1],countdata[,1],
+     ylim=c(0,50),xlim=c(0,10),
+     ylab = "Sample 1 Raw Counts",xlab="Sample 1 CPM")
+text(thresh.value-1.5,y=30,labels=paste("thresh.value = ",thresh.value,sep=""))
 abline(v=thresh.value)
+abline(h=10,lty="dashed",col="grey")
 dev.off()
 
 #---------------------QUALITY CHECK----------------------
