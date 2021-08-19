@@ -96,9 +96,6 @@ Fu, N.Y., Rios, A., Pal, B., Soetanto, R., Lun, A.T.L., Liu, K., Beck, T., Best,
 
 ANNOTATED PARMS FILE
 
-#The raw (un-indexed) sequence of your chosen genome, the .fa.gz file from UCSC or .fta file from NCBI. Used to build the index for alignment.
-index.file: chr1_mm10
-
 #Set TRUE if FASTQ sequences are paired-end
 paired.end.status: FALSE
 
@@ -106,8 +103,17 @@ paired.end.status: FALSE
   #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies are built-in. Other annotations (.gtf files) must de downloaded seperately.
 ref.genome: mm10
 
+#The raw (un-indexed) sequence of your chosen genome, the .fa.gz file from UCSC or .fta file from NCBI. Used to build the index for alignment.
+index.file: chr1_mm10
+
 #Set TRUE if using existing feature counts data (re-analyzing raw count data)
 use.existing.counts: FALSE
+
+#The sequence feature to be counted (for gene expression, set to gene)
+feature.type: gene
+
+#The attribute of the chosen feature to be counted (for gene expression, set to gene_id)
+attribute.type: gene_id
 
 #This specifies the groups to compare. This must be the same as the name of the 2nd column in your design matrix.
 interest.group: typeluminal
