@@ -99,24 +99,24 @@ ANNOTATED PARMS FILE
 #Set TRUE if FASTQ sequences are paired-end
 paired.end.status: FALSE
 
-#The name of the genome that will be used to count RNA reads from your alignments, the .gtf file from NCBI. 
-  #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies are built-in. Other annotations (.gtf files) must de downloaded seperately.
-ref.genome: mm10
-
 #The raw (un-indexed) sequence of your chosen genome, the .fa.gz file from UCSC or .fta file from NCBI. Used to build the index for alignment.
 index.file: chr1_mm10
 
 #Set TRUE if using existing feature counts data (re-analyzing raw count data)
 use.existing.counts: FALSE
 
+#The name of the genome that will be used to count RNA reads from your alignments, the .gtf file from NCBI. 
+  #Mouse (mm9/mm10) and human (hg19/hg38) genome assemblies are built-in. Other annotations (.gtf files) must de downloaded seperately.
+ref.genome: mm10
+
+#This specifies the groups to compare. This must be the same as the name of the 2nd column in your design matrix.
+interest.group: typeluminal
+
 #The sequence feature to be counted (for gene expression, set to gene)
 feature.type: gene
 
 #The attribute of the chosen feature to be counted (for gene expression, set to gene_id)
 attribute.type: gene_id
-
-#This specifies the groups to compare. This must be the same as the name of the 2nd column in your design matrix.
-interest.group: typeluminal
 
 #The minimum number of raw counts per million a gene must be associated with for it to be included in analysis.
 thresh.value: 6
@@ -142,4 +142,4 @@ Intercept	typeluminal
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jacob Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.1.1 (v1.1.1). Zenodo. https://doi.org/10.5281/zenodo.5207146
+Jacob Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.1.2 (v1.1.2). Zenodo. https://doi.org/10.5281/zenodo.5207146
