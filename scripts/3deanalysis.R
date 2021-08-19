@@ -162,7 +162,7 @@ highly_variable_lcpm<-logcounts[select_var,]
 
 #Save most variable genes
 setwd(paste(file.path,"plots/Quality",sep=""))
-write.csv(highly_variable_lcpm,"highly_variable_genes.csv",row.names = TRUE)
+write.csv(highly_variable_lcpm,"highly_variable_genes_logcpm.csv",row.names = TRUE)
 
 #Plot heatmap
 mypalette <- brewer.pal(11,"RdYlBu")
@@ -174,7 +174,8 @@ heatmap.2(highly_variable_lcpm,
           trace="none", 
           main="Top 100 most variable genes\nacross samples (if n>=100)",
           ColSideColors=color.select,
-          scale="row")
+          scale="row",
+          margins=c(10,10))
 dev.off()
 
 #---------------------DE ANALYSIS----------------------
