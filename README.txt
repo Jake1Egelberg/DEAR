@@ -8,6 +8,8 @@ INSTRUCTIONAL VIDEOS (about 5 minutes each):
 
 (4) Differential Expression Analysis in R: https://youtu.be/5zIpqULUig4
 
+Additional information about DEA and the DEAR user interface: https://tinyurl.com/32ejz4jd
+
 ------------------------------------------------------------
 
 INSTALLATION INSTRUCTIONS:
