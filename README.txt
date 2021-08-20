@@ -36,24 +36,25 @@ GENERAL STEPS OF DEA:
 USING DEAR:
 
 1) Identify sequences to analyze from NCBI SRA (Sequence Read Archive). Must be from human or mouse samples.
-	https://www.ncbi.nlm.nih.gov/sra/
+	NCBI SRA: https://www.ncbi.nlm.nih.gov/sra/
 
 *Filter by  Access=Public, Source=RNA, Library Layout=<Your choice>, File Type= .fastq OR .bam
 **Order results by taxon to according to which organism you are investigating (Homo sapiens/hg19/hg38 or Mus musculus/mm9/mm10)
 
 2) Download FASTQ/BAM from European Nucleotide Archive (downloading BAM speeds up analysis). For each FASTQ file, record metadata in the metadata file.
-	https://www.ebi.ac.uk/ena/browser/view
+	European Nucleotide Archive: https://www.ebi.ac.uk/ena/browser/view
 
 3) Extract downloaded FASTQ/BAM to the 1fastqfiles folder in DEAR
 
 *Store old FASTQ files in history folder
 **For paired data, ensure one set is added to pair folder in same order
 
-4) Identify the reference genome for your chosen sequences and import its FASTA sequence into the 2genome folder. You can download .fa.gz files from UCSC. This is the index.file parm, and often the ref.genome parm as well.
-	https://hgdownload.soe.ucsc.edu/downloads.html
+4) Identify the genome your chosen sequences are from and import its FASTA sequence into the 2genome folder. You can download .fa.gz files from UCSC. This is the index.file parm. If your sequences are not from humans or mice, download .fna files from the NCBI Assembly database.
+	UCSC: https://hgdownload.soe.ucsc.edu/downloads.html
+	NCBI Assembly: https://www.ncbi.nlm.nih.gov/assembly
 
-*If the reference genomes are not from the hg19, hg38, mm9, or mm10 builds (e.g. E. coli), then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file. However, differential expression analysis will not run to completion for alternative  genomes.
-	https://www.ncbi.nlm.nih.gov/assembly
+*If your sequences are not from humans or mice (e.g. E. coli), then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file. However, differential expression analysis will not run to completion for alternative  genomes.
+	NCBI Assembly: https://www.ncbi.nlm.nih.gov/assembly
 
 5) Configure the design matrix
 
