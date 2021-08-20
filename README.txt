@@ -8,6 +8,8 @@ INSTRUCTIONAL VIDEOS (about 5 minutes each):
 
 (4) Differential Expression Analysis in R: https://youtu.be/5zIpqULUig4
 
+(5) Demo with real SARS-CoV-2 RNA-seq data: https://youtu.be/mnTL0Q-qrxI
+
 Additional information about DEA and the DEAR user interface: https://tinyurl.com/32ejz4jd
 
 ------------------------------------------------------------
