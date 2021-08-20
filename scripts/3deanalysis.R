@@ -149,7 +149,7 @@ dev.off()
 setwd(paste(file.path,"plots/Quality",sep=""))
 png("MDSplot.png")
 plotMDS(dgeObj,col=color.select)
-title("Cell type")
+title("MDS Plot")
 dev.off()
 
 #Estimate variance in each row of logcount2 matrix
