@@ -41,7 +41,7 @@ USING DEAR:
 *Filter by  Access=Public, Source=RNA, Library Layout=<Your choice>, File Type= .fastq OR .bam
 **Order results by taxon to according to which organism you are investigating (Homo sapiens/hg19/hg38 or Mus musculus/mm9/mm10)
 
-2) Download FASTQ/BAM from European Nucleotide Archive (downloading BAM speeds up analysis)
+2) Download FASTQ/BAM from European Nucleotide Archive (downloading BAM speeds up analysis). For each FASTQ file, record metadata in the metadata file.
 	https://www.ebi.ac.uk/ena/browser/view
 
 3) Extract downloaded FASTQ/BAM to the 1fastqfiles folder in DEAR
@@ -55,9 +55,9 @@ USING DEAR:
 *If the reference genomes are not from the hg19, hg38, mm9, or mm10 builds (e.g. E. coli), then you must also import a GTF annotation file into the "3annotations" folder. Files from NCBI are downloaded as compressed .tar files and must be unzipped with 7zip. Name this file the same as your "ref.genome" input in the parms file. However, differential expression analysis will not run to completion for alternative  genomes.
 	https://www.ncbi.nlm.nih.gov/assembly
 
-5) Record sample metadata and configure design matrix
+5) Configure the design matrix
 
-6) Configure parms
+6) Configure parameters (parms)
 
 7) Run the following .bat files in order:
 	1) 1BUILD_INDEX.bat *SKIP THIS IF YOU ALREADY HAVE A BUILT INDEX*
@@ -119,7 +119,7 @@ feature.type: gene
 attribute.type: gene_id
 
 #The minimum number of raw counts per million a gene must be associated with for it to be included in analysis.
-thresh.value: 6
+thresh.value: 0.5
 
 #The minimum number of samples across which the thresh.value must be met for a gene to be included in analysis.
 sample.value: 2 
@@ -142,4 +142,4 @@ Intercept	typeluminal
 ------------------------------------------------------------
 
 CITE THIS WORKFLOW:
-Jacob Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.1.2 (v1.1.2). Zenodo. https://doi.org/10.5281/zenodo.5207146
+Jacob Egelberg. (2021). Jake1Egelberg/DEAR: DEAR: Differential Expression Analysis in R v1.1.3 (v1.1.3). Zenodo. https://doi.org/10.5281/zenodo.5207146
