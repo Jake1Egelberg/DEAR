@@ -97,16 +97,17 @@ thresh <- myCPM > thresh.value
 keep <- rowSums(thresh) >= sample.value
 counts.keep<-countdata[keep,]
 
-#Plot CPM v.s. Counts, check that count of 10 approximates thresh.value
-setwd(paste(file.path,"plots/Quality",sep=""))
-png("CPM.png")
-plot(myCPM[,1],countdata[,1],
-     ylim=c(0,50),xlim=c(0,10),
-     ylab = "Sample 1 Raw Counts",xlab="Sample 1 CPM")
-text(thresh.value-1.5,y=30,labels=paste("thresh.value = ",thresh.value,sep=""))
-abline(v=thresh.value)
-abline(h=10,lty="dashed",col="grey")
-dev.off()
+for(i in 1:length(names(countdata))){
+  #Plot CPM v.s. Counts, check that count of 10 approximates thresh.value
+  setwd(paste(file.path,"plots/Quality",sep=""))
+  png(paste("CPM",i,".png",sep=""))
+  plot(myCPM[,i],countdata[,i],
+       ylim=c(0,50),xlim=c(0,10),
+       ylab = paste(names(countdata)[i]," Raw Counts",sep=""),xlab=paste(names(countdata)[i]," CPM",sep=""))
+  abline(v=thresh.value)
+  abline(h=10,lty="dashed",col="grey")
+  dev.off()
+}
 
 #---------------------QUALITY CHECK----------------------
 
