@@ -75,7 +75,7 @@ if(use.existing.counts==FALSE){
   }
   
   countdata<-as.data.frame(fc$counts)
-  names(countdata)<-str_sub(names(countdata),1,10)
+  names(countdata)<-str_replace_all(names(countdata),".fastq.gz.subread.BAM","")
   
   setwd(paste(file.path,"1fastqfiles",sep=""))
   write.csv(countdata,"rawfeaturecounts.csv",row.names=TRUE)
